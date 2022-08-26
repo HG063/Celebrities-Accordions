@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 .App {
   text-align: center;
 }
@@ -12,6 +13,8 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+
 
 .App-header {
   background-color: #282c34;
@@ -36,3 +39,8 @@
     transform: rotate(360deg);
   }
 }
+
+.input{
+  font-family: FontAwesome;
+}
+
