@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-// import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import * as yup from "yup";
 import "./App.css";
 import { Accordion, Row, Col, Form } from "react-bootstrap";
 import celebs from "./celebrities.json";
 import { DeleteModal } from "./DeleteModal";
+import { SearchBar } from "./SearchBar";
 
 var celebId;
 export const List = () => {
@@ -17,18 +15,6 @@ export const List = () => {
   const [abled, setAbled] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [search, setSearch] = useState("");
-
-  // const schema = yup.object().shape({
-  //   country: yup.string().required("Connot Enter Numbers"),
-  //   description: yup.string().required(),
-  // });
-
-  // const {
-  //   register,
-  //   formState: { errors },
-  // } = useForm({
-  //   resolver: yupResolver(schema),
-  // });
 
   const age = (age) => {
     var today = new Date();
@@ -62,15 +48,7 @@ export const List = () => {
   return (
     <div className="mt-3 d-flex justify-content-center">
       <Col lg={5}>
-        <Row className="ms-0 me-0">
-          <input
-            className="input mb-2"
-            type="text"
-            placeholder=" &#xf002; Search user"
-            onChange={(event) => setSearch(event.target.value)}
-            style={{ borderRadius: "10px" }}
-          />
-        </Row>
+        <SearchBar setSearch={setSearch} />
         {celebrities
           .filter((celebs) => {
             if (setSearch === "") return celebs;
@@ -86,7 +64,7 @@ export const List = () => {
               <div key={key}>
                 <Row>
                   <Accordion>
-                    <Accordion.Item eventKey={key} key={key}>
+                    <Accordion.Item eventKey={key}>
                       <Accordion.Header>
                         {" "}
                         {
@@ -203,14 +181,9 @@ export const List = () => {
                                   }}
                                   placeholder="Enter Country"
                                   defaultValue={celebrities.country}
-                                  // {...register("country")}
                                 />
                               )}{" "}
                             </Form.Group>
-                            {/* <div className="Red-Validation">
-                              <br />
-                              {errors.country?.message}
-                            </div> */}
                           </Col>
                         </Row>
                         <Row className="mt-2">
@@ -234,18 +207,11 @@ export const List = () => {
                                 }}
                                 defaultValue={celebrities.description}
                                 placeholder="Enter Description"
-                                // {...register("description")}
                                 cols="64"
                                 rows="5"
                                 style={{ borderRadius: "10px" }}
                               ></textarea>
                             )}{" "}
-                            {/* {errors.description && (
-                              <div className="Red-Validation">
-                                <br />
-                                {errors.description?.message}
-                              </div>
-                            )} */}
                           </Form.Group>
                         </Row>
                         <Row className="mt-1">
